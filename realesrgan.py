@@ -31,7 +31,7 @@ def resize_crop_image(image_path, bucket_data):
         idx = min(bucket_data, key=lambda x: abs(x[4] - aspect_ratio))
         w, h = idx[1], idx[0]
 
-    scale_ratio = max(w / width, h / height)
+    scale_ratio = min(w / width, h / height)
     resized_img = cv2.resize(img, None, fx=scale_ratio, fy=scale_ratio)
 
     crop_x = resized_img.shape[1] - w
